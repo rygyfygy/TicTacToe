@@ -1,5 +1,7 @@
 body {
     background-color: black;
+    display:flex;
+    gap: 5em;
 }
 
 #board {
@@ -12,5 +14,14 @@ body {
 }
 
 .cell {
-    font-size: xx-large;
+    font-size: 50px;
+}
+
+#table>* {
+    color: white;
+}
+
+span {
+    display: flex;
+    gap: 0.5em;
 }

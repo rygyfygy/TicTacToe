@@ -6,23 +6,35 @@ const TicTacToe = (() => {
     [null, null, null],
   ];
 
+  board.clear = function () {
+    board.forEach(row => row.fill(null));
+    document.querySelectorAll('.cell').forEach((cell) => {cell.textContent = null});
+  };
+
+
   let currentPlayer;
 
   const createPlayer = (name, marker) => {
     return {
       name: name,
       marker: marker,
-      points: 0,
+      score: 0,
       move(r, c) {
         board[r][c] = this.marker;
-      }
+      },
+      display: null,
+      update() {this.display.textContent = `${this.score}`}
     };
   };
+  
   
  
   const player1 = createPlayer(prompt("Player 1's name:"), "x");
   const player2 = createPlayer(prompt("Player 2's name:"), "o");
   const players = [player1, player2];
+
+  player1.display = document.querySelector('#player1')
+  player2.display = document.querySelector('#player2')
   
   
   const setCurrentPlayer = function() {
@@ -48,12 +60,15 @@ const TicTacToe = (() => {
 
     if (lines.some((line) => line.every((cell) => cell === currentPlayer.marker))) {
       alert(`${currentPlayer.name} wins!`);
-      return;
+      currentPlayer.score++;
+      currentPlayer.update();
+      board.clear();
+      return currentPlayer;
     }
 
     if (gameBoard.every((row) => row.every((cell) => cell != null))) {
       alert("Tie!");
-      return;
+      return currentPlayer;
     }
   };
 
