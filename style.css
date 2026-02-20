@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+}
+
+#board {
+    height: 500px;
+    display: grid;
+    grid: repeat(3, 100px) / repeat(3, 100px);
+    button {
+        background-color: red;
+    }
+}
+

@@ -1,13 +1,10 @@
 /* global alert, prompt */
 
-
 let board = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
 ];
-
-
 
 function Player(name, marker) {
   this.name = name;
@@ -27,7 +24,16 @@ function Player(name, marker) {
 const player1 = new Player("Pierwszy", "x");
 const player2 = new Player("Drugi", "o");
 const players = [player1, player2];
+let currentPlayer;
 
+const setCurrentPlayer = (players) => {
+  if (currentPlayer) {
+    currentPlayer.marker === "o" ? currentPlayer = player1 : currentPlayer = player2;
+  }
+  else {
+    currentPlayer = players[Math.floor(Math.random() * 2)];
+  };
+}
 
 function checkWinner(board) {
   const lines = [
@@ -48,11 +54,12 @@ function checkWinner(board) {
   }
 
   if (lines.every((line) => line.every((cell) => cell != null))) {
-    alert('TIE!');
+    alert("TIE!");
     return;
   }
 }
 
+// TODO: refractor logic, add event listeners
 
 // player1.move();
 // player2.move();
