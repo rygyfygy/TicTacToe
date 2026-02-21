@@ -33,8 +33,12 @@ const TicTacToe = (() => {
   const player2 = createPlayer(prompt("Player 2's name:"), "o");
   const players = [player1, player2];
 
-  player1.display = document.querySelector('#player1')
-  player2.display = document.querySelector('#player2')
+  player1.display = document.querySelector('#player1 .score')
+  player2.display = document.querySelector('#player2 .score')
+  document.querySelector('#player1 .name').textContent = player1.name + ":";
+  document.querySelector('#player2 .name').textContent = player2.name + ":";
+  
+  
   
   
   const setCurrentPlayer = function() {
